@@ -38,11 +38,14 @@ It cannot handle ```   >> ```   , ```  | ```   , ```  > ```   etc.
 To exit the shell type ```   exit```    in the shell, it will ignore any other parameters after it.
 If any entered command line is longer 512 charater it will print an error.
 The shell can handle assigning tasks to run in the background.
+
 #### **Implementation** :
+
 The code consists of 3 files : *main.c* , *Essential.h* and *Essential.c*.
 ##### ***main.c***
 The main code start with getting the current user name which is used to display the shell as ```  UserName```   and when changing the directory to home
-``` HomePath =  strcpy(HomePath,"/home/"); 
+```
+HomePath =  strcpy(HomePath,"/home/"); 
   OutCommnadF = popen("whoami","r");
   fgets(USER,20,OutCommnadF);
   pclose(OutCommnadF);
@@ -54,10 +57,12 @@ First the code initialize the   ```   HomePath ```    variable with
 Then it open file running ``` whoami``` command in it which returns the name of the current user, then, it reads it  from the file and remove the ``` '\n'```	if it exists, and  saves it in ``` USER``` variable, finally the  ``` HomePath``` is concatenated with ``` USER ``` producing the home directory of current user.
 
 Afterward the code Enters infinite loop ```while (True)``` of the sell, it prints the name of the user then ``` > ``` and wait for the user to enter a command line.
+
 ```
 printf("%s>",USER);    
 fgets(input_stream, Ssize, stdin);  
   ```  
+  
 After the user enters the command it performs some checks on it, if the input is too long it prints error in ``` stderr``` , if the command is empty it jumps back to the start of the loop.
 
 
@@ -252,6 +257,8 @@ Otherwise it will call ```CommandExecuteNormal``` that executes the other comman
 	}
 	return Return_Status;
 ```
+
+
 
 
 
